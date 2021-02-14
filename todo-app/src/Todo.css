@@ -1,0 +1,8 @@
+.Todo-li {
+    border: 1px solid black;
+    margin: 5px;
+}
+
+.Todo-pointer {
+    cursor: pointer;
+}
