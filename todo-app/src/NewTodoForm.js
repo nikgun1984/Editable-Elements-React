@@ -25,6 +25,7 @@ const NewTodoForm = ({ addTodo }) => {
 					id="todo"
 					value={formData.todo}
 					onChange={handleChange}
+					required
 				/>
 				<button>Submit</button>
 			</form>

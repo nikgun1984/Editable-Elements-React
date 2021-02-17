@@ -30,9 +30,10 @@ const useStyles = makeStyles({
 
 const TodoList = () => {
 	const classes = useStyles();
-	const [todos, setTodos] = useState([]);
-	// const [isEdit, setIsEdit] = useState(false);
-	const [isHidden, setIsHidden] = useState(true);
+	const storedTodos = JSON.parse(localStorage.getItem("todos")) || [[], [true]];
+	const [todos, setTodos] = useState(storedTodos[0]);
+	const [isHidden, setIsHidden] = useState(storedTodos[1]);
+
 	const addTodo = (toDo) => {
 		const newTodo = {
 			...toDo,
@@ -45,7 +46,6 @@ const TodoList = () => {
 	};
 	const removeTodo = (id) => {
 		setTodos(todos.filter((todo) => todo.id !== id));
-		console.log(todos.length);
 		if (todos.length - 1 < 1) setIsHidden(true);
 	};
 	const editTodo = (id) => {
@@ -77,6 +77,7 @@ const TodoList = () => {
 			)
 		);
 	};
+	localStorage.setItem("todos", JSON.stringify([todos, isHidden]));
 	return (
 		<div>
 			<h1>Todo List</h1>
